@@ -1,25 +1,39 @@
 package prop.assignment0;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Parser implements IParser {
-
+	
+	private Tokenizer tokenizer = new Tokenizer(); 
+	
+	
 	@Override
 	public void open(String fileName) throws IOException, TokenizerException {
-		// TODO Auto-generated method stub
+		
+		tokenizer.open(fileName);
 		
 	}
 
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {
-		// TODO Auto-generated method stub
-		return null;
+		Lexeme lexeme;
+		lexeme = tokenizer.current(); 
+			
+		tokenizer.moveNext(); 
+		
+		
 	}
 
 	@Override
 	public void close() throws IOException {
-		// TODO Auto-generated method stub
+		tokenizer.close();
 		
+	}
+	
+	public ArrayList<Lexeme> getList() {
+		
+		return lexemes; 
 	}
 
 }
