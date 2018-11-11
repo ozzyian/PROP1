@@ -15,8 +15,6 @@ public class AssignmentNode implements INode  {
 		
 	}
 	
-	public void setObjects(Object o, int i) {
-		nodeObjects[i] = o;
-	}
+
 
 }

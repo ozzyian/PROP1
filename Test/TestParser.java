@@ -1,20 +1,25 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import prop.assignment0.INode;
+import prop.assignment0.IParser;
 import prop.assignment0.Lexeme;
+import prop.assignment0.Parser;
+import prop.assignment0.ParserException;
 import prop.assignment0.Token;
+import prop.assignment0.TokenizerException;
 
 class TestParser {
 
 	@Test
-	void testParse() {
-		ArrayList<Lexeme> testList = new ArrayList<>();
-		testList.add(new Lexeme('a', Token.IDENT)); 
-		testList.add(new Lexeme('*', Token.MULT_OP));
-		
+	void testParser() throws IOException, TokenizerException, ParserException {
+		IParser parser = new Parser();
+		parser.open("program1.txt");
+		INode n = parser.parse();
+		assertNull(n);
 	}
 
 }

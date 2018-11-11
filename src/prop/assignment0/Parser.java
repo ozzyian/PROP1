@@ -18,15 +18,16 @@ public class Parser implements IParser {
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {
 		assign();
-			
+		close();	
 		 
-		
+	return null;
 		
 	}
+	
 	public void assign() throws ParserException, IOException, TokenizerException {
+		tokenizer.moveNext();
 		lookahead = tokenizer.current();
 		if (lookahead.token() == Token.IDENT) {
-			
 			tokenizer.moveNext();
 			lookahead = tokenizer.current();
 		}else {
@@ -48,8 +49,11 @@ public class Parser implements IParser {
 		}else {
 			throw new ParserException("Expected ';' but was " + lookahead.value());
 		}
+		
+		if(lookahead.token() != Token.EOF) {
+			throw new ParserException("Expected EOF but was "+ lookahead.value());
+		}
 	}
-	
 	public void expression() throws IOException, TokenizerException, ParserException {
 		term();
 		while (lookahead.token() == Token.ADD_OP || lookahead.token() == Token.SUB_OP) {
