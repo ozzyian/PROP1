@@ -11,6 +11,7 @@ import prop.assignment0.Parser;
 import prop.assignment0.ParserException;
 import prop.assignment0.Token;
 import prop.assignment0.TokenizerException;
+import prop.assignment0.*;
 
 class TestParser {
 
@@ -19,7 +20,7 @@ class TestParser {
 		IParser parser = new Parser();
 		parser.open("program1.txt");
 		INode n = parser.parse();
-		assertNull(n);
+		assertNotNull(n);
 	}
 
 }

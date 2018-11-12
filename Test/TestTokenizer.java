@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class TestTokenizer {
 
-	@Test
+	//@Test
 	void testMatch() throws IOException, TokenizerException {
 		Lexeme expected = new Lexeme('a', Token.IDENT);
 		Tokenizer tokenizer = new Tokenizer();

@@ -37,12 +37,11 @@ public class Tokenizer implements ITokenizer {
 			lexemeCurrent = new Lexeme(current, Token.IDENT);
 		} else if ('0' <= current && current <= '9') {
 			lexemeCurrent = new Lexeme(current, Token.INT_LIT);
-		} else {
+		} else if(Character.isWhitespace(current)){
+			moveNext();
+		}else {
 
 			switch (current) {
-			case ' ':
-				moveNext();
-				break;
 			case Scanner.EOF:
 				lexemeCurrent = new Lexeme(current, Token.EOF);
 				break;
@@ -79,6 +78,8 @@ public class Tokenizer implements ITokenizer {
 			case '}':
 				lexemeCurrent = new Lexeme(current, Token.RIGHT_CURLY);
 				break;
+			default:
+				throw new TokenizerException(""+ current+ " is not a valid symbol");
 			};
 		
 		}
