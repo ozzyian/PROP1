@@ -54,7 +54,11 @@ public class AssignmentNode implements INode  {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
+		builder.append("AssignmentNode" + "\n");
+		builder.append("\t" + ID + "\n"); 
+		builder.append("\t" + assignOperand + "\n"); 
+		eNode.buildString(builder, (tabs+1) );
+		
 		
 	}
 	

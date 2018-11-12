@@ -36,7 +36,7 @@ public class FactorNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

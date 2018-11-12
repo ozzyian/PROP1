@@ -26,7 +26,13 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		// TODO Auto-generated method stub
+		String tab = ""; 
+		for(int i = 0; i<tabs; i++) {
+			tab+= "\t";
+		}
+		
+		builder.append(tab + "ExpressionNode" + "\n");
+		tNode.buildString(builder, (tabs+1));
 		
 	}
 
