@@ -36,7 +36,8 @@ public class Tokenizer implements ITokenizer {
 		if ((current >= 'a' && current <= 'z') || (current >= 'A' && current <= 'Z')) {
 			lexemeCurrent = new Lexeme(current, Token.IDENT);
 		} else if ('0' <= current && current <= '9') {
-			lexemeCurrent = new Lexeme(current, Token.INT_LIT);
+			double nmbr = Character.getNumericValue(current);
+			lexemeCurrent = new Lexeme(nmbr, Token.INT_LIT);
 		} else if(Character.isWhitespace(current)){
 			moveNext();
 		}else {

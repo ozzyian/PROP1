@@ -20,10 +20,20 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		double leftOfOperand,rightOfOperand;
+		
 		if(operand==null) {
-			tNode.evaluate(null);
-		}else if((char)operand.value()=='+') {
+			return tNode.evaluate(null);
+		}else if(operand.token() == Token.ADD_OP) {
+			leftOfOperand = (double)tNode.evaluate(null);
+			rightOfOperand = (double)eNode.evaluate(null);
 			
+			return leftOfOperand+rightOfOperand;
+		}else {
+			leftOfOperand = (double)tNode.evaluate(null);
+			rightOfOperand= (double)eNode.evaluate(null);
+			
+			return leftOfOperand-rightOfOperand;
 		}
 		
 	}

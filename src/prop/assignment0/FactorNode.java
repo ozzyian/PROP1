@@ -30,8 +30,12 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		if(eNode == null) {
+			return intValue.value();
+		}else {
+			return eNode.evaluate(null);
+		}
 		
-		return intValue;
 	}
 
 	@Override

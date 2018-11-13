@@ -48,9 +48,9 @@ public class AssignmentNode implements INode  {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		eNode.evaluate(null);
 		
-		return this;
+		
+		return ""+ ID.value() + " = " +eNode.evaluate(null);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class AssignmentNode implements INode  {
 	@Override 
 	public String toString() {
 		try {
-			return "" + ID.value() + assignOperand.value();
+			return "" + ID.value() + " " + assignOperand.value();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

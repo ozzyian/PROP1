@@ -6,6 +6,7 @@ public class TermNode implements INode {
 	private FactorNode fNode;
 	private Lexeme operand;
 	private TermNode tNode;
+
 	
 	public TermNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
 		fNode = new FactorNode(t);
@@ -18,8 +19,19 @@ public class TermNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		double leftOfOperand,rightOfOperand;
+		if(operand == null) {
+			return fNode.evaluate(null);
+		}else if(operand.token() == Token.MULT_OP) {
+			leftOfOperand = (double) fNode.evaluate(null);
+			rightOfOperand = (double) tNode.evaluate(null);
+			return leftOfOperand*rightOfOperand;
+		}else {
+			leftOfOperand = (double) fNode.evaluate(null);
+			rightOfOperand = (double) tNode.evaluate(null);
+			return leftOfOperand/rightOfOperand;
+		}
 		
-		return fNode.evaluate(null);
 	}
 
 	@Override
