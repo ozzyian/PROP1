@@ -21,7 +21,7 @@ public class Parser implements IParser {
 	public INode parse() throws IOException, TokenizerException, ParserException {
 		
 		 
-	return new AssignmentNode(tokenizer);
+	return new BlockNode(tokenizer);
 		
 	}
 	

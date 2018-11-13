@@ -36,10 +36,7 @@ public class AssignmentNode implements INode  {
 			throw new ParserException("Expected ';' but was " + t.current().value());
 		}
 		
-		if(t.current().token() != Token.EOF) {
-			throw new ParserException("Expected EOF but was "+ t.current().value());
-		}
-		t.close();
+
 	}
 	
 	public Lexeme getID() {
@@ -55,25 +52,19 @@ public class AssignmentNode implements INode  {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-
-		builder.append("AssignmentNode" + "\n");
-		builder.append("\t" + ID + "\n"); 
-		builder.append("\t" + assignOperand + "\n"); 
+		String tab = ""; 
+		for(int i = 0; i<tabs; i++) {
+			tab+= "\t";
+		}
+		builder.append(tab +"AssignmentNode" + "\n");
+		builder.append(tab +"\t" + ID + "\n"); 
+		builder.append(tab+"\t" + assignOperand + "\n"); 
 		eNode.buildString(builder, (tabs+1) );
-		builder.append("\t" + semicolon + "\n");
+		builder.append(tab+"\t" + semicolon + "\n");
 		
 	}
 	
-	@Override 
-	public String toString() {
-		try {
-			return "" + ID.value() + " " + assignOperand.value();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+
 
 	
 

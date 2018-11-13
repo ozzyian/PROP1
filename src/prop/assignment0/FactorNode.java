@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class FactorNode implements INode {
 	private Lexeme intValue;
+	private Lexeme ID;
 	private Lexeme leftParen;
 	private ExpressionNode eNode;
 	private Lexeme rightParen;
@@ -13,6 +14,10 @@ public class FactorNode implements INode {
 		if (t.current().token() == Token.INT_LIT) {
 			intValue = t.current();
 			t.moveNext();
+		}else if(t.current().token() == Token.IDENT) {
+			ID = t.current();
+			t.moveNext();
+			
 		}else if(t.current().token() == Token.LEFT_PAREN) {
 			leftParen = t.current();
 			t.moveNext();
