@@ -30,13 +30,28 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return intValue;
 	}
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
+		String tab = ""; 
+		for(int i = 0; i<tabs; i++) {
+			tab+= "\t";
+		}
 		
+		builder.append(tab + "FactorNode" + "\n");
+		if(intValue!=null) {
+			builder.append("\t" + tab + intValue + "\n");
+			
+		}else{
+			builder.append("\t" + tab + leftParen + "\n"); 
+			eNode.buildString(builder, (tabs+1));
+			builder.append("\t" + tab + rightParen + "\n");
+		}
+		
+
 		
 	}
 

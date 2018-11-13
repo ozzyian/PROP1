@@ -18,8 +18,8 @@ public class TermNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return fNode.evaluate(null);
 	}
 
 	@Override
@@ -31,6 +31,12 @@ public class TermNode implements INode {
 		
 		builder.append(tab + "TermNode" + "\n");
 		fNode.buildString(builder, (tabs+1));
+		
+		if(operand!=null) {
+			builder.append("\t" + tab + operand + "\n"); 
+			tNode.buildString(builder, (tabs+1));
+			
+		}
 		
 	}
 

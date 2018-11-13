@@ -20,8 +20,12 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if(operand==null) {
+			tNode.evaluate(null);
+		}else if((char)operand.value()=='+') {
+			
+		}
+		
 	}
 
 	@Override
@@ -33,6 +37,11 @@ public class ExpressionNode implements INode {
 		
 		builder.append(tab + "ExpressionNode" + "\n");
 		tNode.buildString(builder, (tabs+1));
+		
+		if(operand!=null) {
+			builder.append("\t" + tab + operand + "\n"); 
+			eNode.buildString(builder, (tabs+1));
+		}
 		
 	}
 

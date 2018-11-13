@@ -48,20 +48,32 @@ public class AssignmentNode implements INode  {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		eNode.evaluate(null);
+		
+		return this;
 	}
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
+
 		builder.append("AssignmentNode" + "\n");
 		builder.append("\t" + ID + "\n"); 
 		builder.append("\t" + assignOperand + "\n"); 
 		eNode.buildString(builder, (tabs+1) );
-		
+		builder.append("\t" + semicolon + "\n");
 		
 	}
 	
+	@Override 
+	public String toString() {
+		try {
+			return "" + ID.value() + assignOperand.value();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	
 
