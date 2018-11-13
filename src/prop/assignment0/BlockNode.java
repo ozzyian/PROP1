@@ -39,9 +39,10 @@ public class BlockNode implements INode {
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
-		builder.append("\t" + curlLeft+ "\n");
+		builder.append("BlockNode" + "\n");
+		builder.append(curlLeft+ "\n");
 		sNode.buildString(builder, (tabs+1));
-		builder.append("\t" + curlRight+ "\n");
+		builder.append(curlRight+ "\n");
 	}
 
 }

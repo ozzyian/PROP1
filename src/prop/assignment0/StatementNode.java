@@ -8,11 +8,10 @@ public class StatementNode implements INode {
 	private StatementNode sNode;
 
 	public StatementNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
-		
-			aNode = new AssignmentNode(t);
-			if(t.current().token() == Token.IDENT) {
-				sNode = new StatementNode(t);
-			}
+		if(t.current().token()== Token.IDENT) {
+			aNode = new AssignmentNode(t); 
+			sNode = new StatementNode(t); 
+		}
 			
 		
 	}
@@ -30,8 +29,8 @@ public class StatementNode implements INode {
 			tab+= "\t";
 		}
 		builder.append(tab +"StatementsNode" + "\n");
-		aNode.buildString(builder, (tabs+1));
-		if (sNode != null) {
+		if(aNode!=null) {
+			aNode.buildString(builder, (tabs+1));
 			sNode.buildString(builder, (tabs+1));
 		}
 	}

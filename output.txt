@@ -1,5 +1,6 @@
 PARSE TREE:
-	LEFT_CURLY {
+BlockNode
+LEFT_CURLY {
 	StatementsNode
 		AssignmentNode
 			IDENT a
@@ -32,7 +33,7 @@ PARSE TREE:
 							FactorNode
 								INT_LIT 5.0
 			SEMICOLON ;
-	RIGHT_CURLY }
+RIGHT_CURLY }
 
 EVALUATION:
 null
