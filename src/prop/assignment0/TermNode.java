@@ -21,14 +21,14 @@ public class TermNode implements INode {
 	public Object evaluate(Object[] args) throws Exception {
 		double leftOfOperand,rightOfOperand;
 		if(operand == null) {
-			return fNode.evaluate(null);
+			return fNode.evaluate(args);
 		}else if(operand.token() == Token.MULT_OP) {
-			leftOfOperand = (double) fNode.evaluate(null);
-			rightOfOperand = (double) tNode.evaluate(null);
+			leftOfOperand = (double) fNode.evaluate(args);
+			rightOfOperand = (double) tNode.evaluate(args);
 			return leftOfOperand*rightOfOperand;
 		}else {
-			leftOfOperand = (double) fNode.evaluate(null);
-			rightOfOperand = (double) tNode.evaluate(null);
+			leftOfOperand = (double) fNode.evaluate(args);
+			rightOfOperand = (double) tNode.evaluate(args);
 			return leftOfOperand/rightOfOperand;
 		}
 		

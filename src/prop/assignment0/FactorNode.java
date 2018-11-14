@@ -35,10 +35,12 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		if(eNode == null) {
+		if(intValue!=null) {
 			return intValue.value();
-		}else {
-			return eNode.evaluate(null);
+		}else if(ID!=null) {
+			
+			}
+			return ID.value();
 		}
 		
 	}
@@ -54,7 +56,9 @@ public class FactorNode implements INode {
 		if(intValue!=null) {
 			builder.append("\t" + tab + intValue + "\n");
 			
-		}else{
+		}else if(ID!=null){
+			builder.append("\t" + tab + ID + "\n");
+		}else {
 			builder.append("\t" + tab + leftParen + "\n"); 
 			eNode.buildString(builder, (tabs+1));
 			builder.append("\t" + tab + rightParen + "\n");
