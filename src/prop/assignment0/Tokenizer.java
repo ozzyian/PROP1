@@ -33,39 +33,33 @@ public class Tokenizer implements ITokenizer {
 	}
 	
 	public void match() throws IOException, TokenizerException {
-		moveNext();
+		if(lexemeCurrent == null) {
+			moveNext();
+		}
 		if (current >= 'a' && current <= 'z') {
 			String s = ""+current;
 			moveNext();
-			while(current<='a' && current<='z') {
+			while(current>='a' && current<='z') {
 				s+=current;
 				moveNext();
 			}
 			
-			if(current!='*' || current!='+' || current!='-' || current!='=') {
-				throw new TokenizerException("Expected operand but was " + current);
-			}
 			
 			lexemeCurrent = new Lexeme(s, Token.IDENT);
+		
 		} else if ('0' <= current && current <= '9') {
 			String s=""+current; 
 			moveNext(); 
-			while('0'<=current && current<=9) {
+			while('0'<=current && current<='9') {
 				s+=current;
 				moveNext();
 			}
-			
-			if(current!='*' || current!='+' || current!='-' || current!='=') {
-				throw new TokenizerException("Expected operand but was " + current);
-			}
-			
-			
-			lexemeCurrent = new Lexeme(Double.parseDouble(s), Token.INT_LIT);	
+				lexemeCurrent = new Lexeme(Double.parseDouble(s), Token.INT_LIT);	
+		
 		}else if(Character.isWhitespace(current)){
 			moveNext();
-			while(Character.isWhitespace(current)) {
-				moveNext();
-			}
+			match();
+			
 		}else {
 			switch (current) {
 			case Scanner.EOF:
@@ -73,36 +67,47 @@ public class Tokenizer implements ITokenizer {
 				break;
 			case Scanner.NULL:
 				lexemeCurrent = new Lexeme(current, Token.NULL);
+				moveNext();
 				break;
 			case '*':
 				lexemeCurrent = new Lexeme(current, Token.MULT_OP);
+				moveNext();
 				break;
 			case '+':
 				lexemeCurrent = new Lexeme(current, Token.ADD_OP);
+				moveNext();
 				break;
 			case '-':
 				lexemeCurrent = new Lexeme(current, Token.SUB_OP);
+				moveNext();
 				break;
 			case '/':
 				lexemeCurrent = new Lexeme(current, Token.DIV_OP);
+				moveNext();
 				break;
 			case ';':
 				lexemeCurrent = new Lexeme(current, Token.SEMICOLON);
+				moveNext();
 				break;
 			case '=':
 				lexemeCurrent = new Lexeme(current, Token.ASSIGN_OP);
+				moveNext();
 				break;
 			case '(':
 				lexemeCurrent = new Lexeme(current, Token.LEFT_PAREN);
+				moveNext();
 				break;
 			case ')':
 				lexemeCurrent = new Lexeme(current, Token.RIGHT_PAREN);
+				moveNext();
 				break;
 			case '{':
 				lexemeCurrent = new Lexeme(current, Token.LEFT_CURLY);
+				moveNext();
 				break;
 			case '}':
 				lexemeCurrent = new Lexeme(current, Token.RIGHT_CURLY);
+				moveNext();
 				break;
 			default:
 				throw new TokenizerException(""+ current+ " is not a valid symbol");

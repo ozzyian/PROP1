@@ -13,7 +13,7 @@ public class Parser implements IParser {
 		
 		tokenizer = new Tokenizer();
 		tokenizer.open(fileName);
-		tokenizer.moveNext();
+		tokenizer.match();
 		
 	}
 

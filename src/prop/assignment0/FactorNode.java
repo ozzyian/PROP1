@@ -1,6 +1,7 @@
 package prop.assignment0;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class FactorNode implements INode {
 	private Lexeme intValue;
@@ -29,7 +30,7 @@ public class FactorNode implements INode {
 				throw new ParserException("expected ')' but was " + t.current().value());
 			}
 		}else {
-			throw new ParserException("Unknown symbol");
+			throw new ParserException("must be INT_LITERAL or IDENTIFIER");
 		}
 	}
 
@@ -37,11 +38,12 @@ public class FactorNode implements INode {
 	public Object evaluate(Object[] args) throws Exception {
 		if(intValue!=null) {
 			return intValue.value();
-		}else if(ID!=null) {
-			
-			}
-			return ID.value();
+		}else if (ID != null){
+			return ((HashMap<Object, Double>) args[0]).get(ID.value());
+		}else {
+			return eNode.evaluate(args);
 		}
+	}
 		
 	
 

@@ -9,7 +9,7 @@ public class ExpressionNode implements INode {
 	
 	public ExpressionNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
 		tNode = new TermNode(t);
-		while (t.current().token() == Token.ADD_OP || t.current().token() == Token.SUB_OP) {
+		if (t.current().token() == Token.ADD_OP || t.current().token() == Token.SUB_OP) {
 			operand = t.current();
 			t.match();
 			eNode = new ExpressionNode(t);
@@ -23,15 +23,15 @@ public class ExpressionNode implements INode {
 		double leftOfOperand,rightOfOperand;
 		
 		if(operand==null) {
-			return tNode.evaluate(null);
+			return tNode.evaluate(args);
 		}else if(operand.token() == Token.ADD_OP) {
-			leftOfOperand = (double)tNode.evaluate(null);
-			rightOfOperand = (double)eNode.evaluate(null);
+			leftOfOperand = (double)tNode.evaluate(args);
+			rightOfOperand = (double)eNode.evaluate(args);
 			
 			return leftOfOperand+rightOfOperand;
 		}else {
-			leftOfOperand = (double)tNode.evaluate(null);
-			rightOfOperand= (double)eNode.evaluate(null);
+			leftOfOperand = (double)tNode.evaluate(args);
+			rightOfOperand= (double)eNode.evaluate(args);
 			
 			return leftOfOperand-rightOfOperand;
 		}

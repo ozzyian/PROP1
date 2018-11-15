@@ -1,9 +1,13 @@
 package prop.assignment0;
 
 import java.io.IOException;
+import java.util.HashMap;
+
+import java.util.Map;
+
 
 public class BlockNode implements INode {
-	
+	private Map<Object, Double> variableValues;
 	private Lexeme curlLeft;
 	private StatementNode sNode;
 	private Lexeme curlRight;
@@ -33,8 +37,10 @@ public class BlockNode implements INode {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-
-		return null;
+		
+		Object[] arr = {(new HashMap<Object, Double>())};
+		
+		return sNode.evaluate(arr);
 	}
 
 	@Override

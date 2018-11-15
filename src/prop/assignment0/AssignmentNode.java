@@ -1,12 +1,14 @@
 package prop.assignment0;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 
 public class AssignmentNode implements INode  {
-	Lexeme ID;
-	Lexeme assignOperand;
-	ExpressionNode eNode;
-	Lexeme semicolon;
+	private Lexeme ID;
+	private Lexeme assignOperand;
+	private ExpressionNode eNode;
+	private Lexeme semicolon;
 	
 	public AssignmentNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
 		
@@ -14,7 +16,7 @@ public class AssignmentNode implements INode  {
 			ID = t.current();
 			t.match();	
 		}else {
-			throw new ParserException("wrong start symbol");
+			throw new ParserException("wrong start symbol of assignment");
 		}
 		
 		
@@ -45,9 +47,11 @@ public class AssignmentNode implements INode  {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		
-		
-		return ""+ ID.value() + " = " +eNode.evaluate(args);
+		HashMap<Object, Double> idValues = (HashMap<Object, Double>) args[0];
+		double result = (double)eNode.evaluate(args);
+		idValues.put(ID.value(), result);
+		System.out.print(idValues);
+		return ""+ ID.value() + " = " + result + "\n";
 	}
 
 	@Override

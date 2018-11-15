@@ -1,18 +1,19 @@
 package prop.assignment0;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class StatementNode implements INode {
 	
 	private AssignmentNode aNode;
 	private StatementNode sNode;
-	private static int count=0; 
-
+	private String evaluation = "";
+	
 	public StatementNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
 		System.out.println("Statement node");
 		if(t.current().token()== Token.IDENT) {
 			aNode = new AssignmentNode(t); 
-			count++;
+			
 			sNode = new StatementNode(t); 
 		}
 			
@@ -21,12 +22,15 @@ public class StatementNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		Object[] values = new Object[count*2];
-		String s = "";
-		for(int i=0; i<args.length;i++) {
-			s+= aNode.evaluate(values) + "\n";
+		
+		
+		if (aNode != null) {
+			evaluation += (aNode.evaluate(args));
+			evaluation += (sNode.evaluate(args));
 		}
-		return s;
+		
+		
+		return evaluation;
 	}
 
 	@Override
