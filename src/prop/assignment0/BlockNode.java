@@ -11,7 +11,7 @@ public class BlockNode implements INode {
 	public BlockNode(Tokenizer t) throws ParserException, IOException, TokenizerException {
 		if(t.current().token() == Token.LEFT_CURLY) {
 			curlLeft = t.current();
-			t.moveNext();	
+			t.match();	
 		}else {
 			throw new ParserException("wrong start symbol");
 		}
@@ -20,7 +20,7 @@ public class BlockNode implements INode {
 		
 		if(t.current().token() == Token.RIGHT_CURLY) {
 			curlRight = t.current();
-			t.moveNext();	
+			t.match();	
 		}else {
 			throw new ParserException("Expected '}' but was " + t.current().value());
 		}
@@ -34,7 +34,7 @@ public class BlockNode implements INode {
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
 
-		return sNode.evaluate(null);
+		return null;
 	}
 
 	@Override

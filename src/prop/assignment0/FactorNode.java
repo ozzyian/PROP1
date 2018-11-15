@@ -13,18 +13,18 @@ public class FactorNode implements INode {
 	public FactorNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
 		if (t.current().token() == Token.INT_LIT) {
 			intValue = t.current();
-			t.moveNext();
+			t.match();
 		}else if(t.current().token() == Token.IDENT) {
 			ID = t.current();
-			t.moveNext();
+			t.match();
 			
 		}else if(t.current().token() == Token.LEFT_PAREN) {
 			leftParen = t.current();
-			t.moveNext();
+			t.match();
 			eNode = new ExpressionNode(t);
 			if (t.current().token() == Token.RIGHT_PAREN) {
 				rightParen = t.current();
-				t.moveNext();
+				t.match();
 			}else {
 				throw new ParserException("expected ')' but was " + t.current().value());
 			}
@@ -43,7 +43,7 @@ public class FactorNode implements INode {
 			return ID.value();
 		}
 		
-	}
+	
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {

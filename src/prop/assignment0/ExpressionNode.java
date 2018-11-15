@@ -11,7 +11,7 @@ public class ExpressionNode implements INode {
 		tNode = new TermNode(t);
 		while (t.current().token() == Token.ADD_OP || t.current().token() == Token.SUB_OP) {
 			operand = t.current();
-			t.moveNext();
+			t.match();
 			eNode = new ExpressionNode(t);
 			
 			

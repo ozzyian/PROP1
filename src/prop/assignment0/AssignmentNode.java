@@ -12,7 +12,7 @@ public class AssignmentNode implements INode  {
 		
 		if (t.current().token() == Token.IDENT) {
 			ID = t.current();
-			t.moveNext();	
+			t.match();	
 		}else {
 			throw new ParserException("wrong start symbol");
 		}
@@ -20,7 +20,7 @@ public class AssignmentNode implements INode  {
 		
 		if (t.current().token() == Token.ASSIGN_OP) {
 			assignOperand = t.current();
-			t.moveNext();	
+			t.match();	
 		}
 		else {
 			throw new ParserException("Expected '=' but was "+  t.current().value());
@@ -30,7 +30,7 @@ public class AssignmentNode implements INode  {
 		
 		if (t.current().token() == Token.SEMICOLON) {
 			semicolon = t.current();
-			t.moveNext();
+			t.match();
 			
 		}else {
 			throw new ParserException("Expected ';' but was " + t.current().value());

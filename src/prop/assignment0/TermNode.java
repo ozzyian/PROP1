@@ -12,7 +12,7 @@ public class TermNode implements INode {
 		fNode = new FactorNode(t);
 		while (t.current().token() == Token.MULT_OP || t.current().token() == Token.DIV_OP) {
 			operand = t.current();
-			t.moveNext();
+			t.match();
 			tNode = new TermNode(t);
 		}
 	}
