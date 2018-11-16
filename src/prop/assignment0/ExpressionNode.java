@@ -6,6 +6,7 @@ public class ExpressionNode implements INode {
 	private TermNode tNode;
 	private Lexeme operand;
 	private ExpressionNode eNode;
+	private static Object[] currentResult = new Object[2];
 	
 	public ExpressionNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
 		tNode = new TermNode(t);
@@ -20,23 +21,33 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		double leftOfOperand,rightOfOperand;
 		
-		if(operand==null) {
-			return tNode.evaluate(args);
-		}else if(operand.token() == Token.ADD_OP) {
-			leftOfOperand = (double)tNode.evaluate(args);
-			rightOfOperand = (double)eNode.evaluate(args);
-			
-			return leftOfOperand+rightOfOperand;
-		}else {
-			leftOfOperand = (double)tNode.evaluate(args);
-			rightOfOperand= (double)eNode.evaluate(args);
-			
-			return leftOfOperand-rightOfOperand;
-		}
 		
-	}
+		args[1] = currentResult;
+		
+		
+		
+		
+		
+		
+//		double leftOfOperand,rightOfOperand;
+//		
+//		if(operand==null) {
+//			return tNode.evaluate(args);
+//		}else if(operand.token() == Token.ADD_OP) {
+//			
+//			leftOfOperand = (double)eNode.evaluate(args);
+//			rightOfOperand = (double)tNode.evaluate(args);
+//			
+//			return leftOfOperand+rightOfOperand;
+//		}else {
+//			leftOfOperand = (double)eNode.evaluate(args);
+//			rightOfOperand= (double)tNode.evaluate(args);
+//			
+//			return leftOfOperand-rightOfOperand;
+//		}
+//		
+//	}
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
