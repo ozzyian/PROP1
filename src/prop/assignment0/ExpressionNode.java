@@ -6,7 +6,8 @@ public class ExpressionNode implements INode {
 	private TermNode tNode;
 	private Lexeme operand;
 	private ExpressionNode eNode;
-	private static Object[] currentResult = new Object[2];
+	private static Object currentResult = 0.0;
+	private Object currentOp;
 	
 	public ExpressionNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
 		tNode = new TermNode(t);
@@ -24,10 +25,19 @@ public class ExpressionNode implements INode {
 		
 		
 		args[1] = currentResult;
+		args[2] = currentOp;
+		
+		if(operand==null) {
+			return tNode.evaluate(args);
+		}else {
+			tNode.evaluate(args);
+			currentOp = operand.token();
+			eNode.evaluate(args);
+			return currentResult;
+		}
 		
 		
-		
-		
+	}	
 		
 		
 //		double leftOfOperand,rightOfOperand;

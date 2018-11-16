@@ -37,7 +37,7 @@ public class BlockNode implements INode {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		Object[] arr = new Object[2];
+		Object[] arr = new Object[3];
 		arr[0]  = (new HashMap<Object, Double>());
 		
 		return sNode.evaluate(arr);

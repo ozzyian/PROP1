@@ -36,8 +36,23 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		if(intValue!=null) {
-			return intValue.value();
+		if(intValue!=null) { //om det finns en intvalör
+			if(args[2]!=null) { //om det finns en operator
+				if(args[2]==Token.ADD_OP) {
+					double a = (double) args[1];
+					args[1] =  a + (double)intValue.value();
+					return null;
+				}else {
+					double a = (double) args[1]; 
+					args[1] =  a - (double)intValue.value();
+					return null;
+				}
+				
+			}else {
+				args[1] = intValue.value();
+				return null;
+			}
+			
 		}else if (ID != null){
 			return ((HashMap<Object, Double>) args[0]).get(ID.value());
 		}else {
