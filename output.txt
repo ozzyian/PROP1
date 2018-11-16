@@ -8,17 +8,17 @@ LEFT_CURLY {
 			ExpressionNode
 				TermNode
 					FactorNode
-						INT_LIT 1.0
-				ADD_OP +
+						INT_LIT 2.0
+				SUB_OP -
 				ExpressionNode
 					TermNode
 						FactorNode
-							INT_LIT 3.0
+							INT_LIT 2.0
 					SUB_OP -
 					ExpressionNode
 						TermNode
 							FactorNode
-								INT_LIT 2.0
+								INT_LIT 3.0
 						SUB_OP -
 						ExpressionNode
 							TermNode
@@ -29,4 +29,4 @@ LEFT_CURLY {
 RIGHT_CURLY }
 
 EVALUATION:
-a = 0.0
+a = -7.0

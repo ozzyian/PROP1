@@ -19,19 +19,34 @@ public class TermNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		double leftOfOperand,rightOfOperand;
+		
 		if(operand == null) {
 			return fNode.evaluate(args);
-		}else if(operand.token() == Token.MULT_OP) {
-			leftOfOperand = (double) fNode.evaluate(args);
-			rightOfOperand = (double) tNode.evaluate(args);
-			return leftOfOperand*rightOfOperand;
 		}else {
-			leftOfOperand = (double) fNode.evaluate(args);
-			rightOfOperand = (double) tNode.evaluate(args);
-			return leftOfOperand/rightOfOperand;
+			
 		}
 		
+		
+		
+		
+		
+		
+		
+		
+		
+//		double leftOfOperand,rightOfOperand;
+//		if(operand == null) {
+//			return fNode.evaluate(args);
+//		}else if(operand.token() == Token.MULT_OP) {
+//			leftOfOperand = (double) fNode.evaluate(args);
+//			rightOfOperand = (double) tNode.evaluate(args);
+//			return leftOfOperand*rightOfOperand;
+//		}else {
+//			leftOfOperand = (double) fNode.evaluate(args);
+//			rightOfOperand = (double) tNode.evaluate(args);
+//			return leftOfOperand/rightOfOperand;
+//		}
+//		
 	}
 
 	@Override
@@ -50,6 +65,9 @@ public class TermNode implements INode {
 			
 		}
 		
+	}
+	public Lexeme getOP() {
+		return operand;
 	}
 
 }

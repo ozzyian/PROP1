@@ -6,10 +6,11 @@ public class ExpressionNode implements INode {
 	private TermNode tNode;
 	private Lexeme operand;
 	private ExpressionNode eNode;
-	private static Object currentResult = 0.0;
-	private Object currentOp;
+	private static Object currentResult;
+	
 	
 	public ExpressionNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
+		System.out.println("exp node created");
 		tNode = new TermNode(t);
 		if (t.current().token() == Token.ADD_OP || t.current().token() == Token.SUB_OP) {
 			operand = t.current();
@@ -22,19 +23,20 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		
-		
-		args[1] = currentResult;
-		args[2] = currentOp;
-		
-		if(operand==null) {
-			return tNode.evaluate(args);
-		}else {
-			tNode.evaluate(args);
-			currentOp = operand.token();
-			eNode.evaluate(args);
+			args[1] = currentResult;
+		if (operand == null) {
+			currentResult = tNode.evaluate(args);
 			return currentResult;
+		}else {
+			//args[2] = operand;
+			currentResult = tNode.evaluate(args);
+			args[2] = operand;
+			args[1] = currentResult;
+			currentResult = eNode.evaluate(args);
+			
+			return currentResult;	
 		}
+		
 		
 		
 	}	
@@ -74,6 +76,9 @@ public class ExpressionNode implements INode {
 			eNode.buildString(builder, (tabs+1));
 		}
 		
+	}
+	public Lexeme getOP() {
+		return operand;
 	}
 
 }
