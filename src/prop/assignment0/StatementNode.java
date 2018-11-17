@@ -2,6 +2,7 @@ package prop.assignment0;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class StatementNode implements INode {
 	
@@ -9,12 +10,12 @@ public class StatementNode implements INode {
 	private StatementNode sNode;
 	private String evaluation = "";
 	
-	public StatementNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
-		System.out.println("Statement node");
+	public StatementNode(Tokenizer t, Map<Object, Object> variableValues) throws IOException, TokenizerException, ParserException {
+		
 		if(t.current().token()== Token.IDENT) {
-			aNode = new AssignmentNode(t); 
+			aNode = new AssignmentNode(t, variableValues); 
 			
-			sNode = new StatementNode(t); 
+			sNode = new StatementNode(t, variableValues); 
 		}
 			
 		

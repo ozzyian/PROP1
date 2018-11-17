@@ -2,6 +2,7 @@ package prop.assignment0;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class AssignmentNode implements INode  {
@@ -10,7 +11,7 @@ public class AssignmentNode implements INode  {
 	private ExpressionNode eNode;
 	private Lexeme semicolon;
 	
-	public AssignmentNode(Tokenizer t) throws IOException, TokenizerException, ParserException {
+	public AssignmentNode(Tokenizer t, Map<Object, Object> variableValues) throws IOException, TokenizerException, ParserException {
 		
 		if (t.current().token() == Token.IDENT) {
 			ID = t.current();
@@ -32,6 +33,7 @@ public class AssignmentNode implements INode  {
 		
 		if (t.current().token() == Token.SEMICOLON) {
 			semicolon = t.current();
+			variableValues.put(ID.value(), eNode);
 			t.match();
 			
 		}else {
@@ -47,10 +49,16 @@ public class AssignmentNode implements INode  {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		HashMap<Object, Double> idValues = (HashMap<Object, Double>) args[0];
-		double result = (double)eNode.evaluate(args);
-		idValues.put(ID.value(), result);
-		System.out.print(idValues);
+		
+		HashMap<Object, Object> idValues = (HashMap<Object, Object>) args[0];
+		double result;
+		if (idValues.get(ID.value()) instanceof ExpressionNode) { //är det en exp node i value så har den inte evaluerats tidigare
+			result =(double) Math.round((double)eNode.evaluate(args) * 100000d) / 100000; // avrunda till 5 decimaler
+			idValues.put(ID.value(), result); // spara över expnoden med värdet för en assignment i mapen
+		}else {
+			result = (double) idValues.get(ID.value()); //om den redan är evaluerad hämta värdet
+		}
+
 		return ""+ ID.value() + " = " + result + "\n";
 	}
 
@@ -67,7 +75,18 @@ public class AssignmentNode implements INode  {
 		builder.append(tab+"\t" + semicolon + "\n");
 		
 	}
-	
+	public boolean equals(Object o) {
+		if (o instanceof AssignmentNode) {
+			AssignmentNode node = (AssignmentNode)o;
+			if (ID == node.ID) {
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			return false;
+		}
+	}
 
 
 	

@@ -21,18 +21,19 @@ public class TermNode implements INode {
 	public Object evaluate(Object[] args) throws Exception {
 		TermNode temp = tNode;
 		double left; 
-		Lexeme tempOP = temp.getOP();
+		
 		
 		left = (double) fNode.evaluate(args);
 		
 		if(operand!=null) {
+			Lexeme tempOP = temp.getOP();
 			if(operand.token()==Token.MULT_OP) {
 				left = left * (double)temp.getFactor().evaluate(args);
 			}else {
 				left = left / (double)temp.getFactor().evaluate(args);
 			}
 			
-			while(true) {
+			while(true) { //om nästa termnode har en termnode med operand utför operand och spara ner nya värdet
 				if(tempOP==null) {
 					
 					return left;

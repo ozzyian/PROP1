@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 public class BlockNode implements INode {
-	private Map<Object, Double> variableValues;
+	private Map<Object, Object> variableValues = new HashMap<Object, Object>();
 	private Lexeme curlLeft;
 	private StatementNode sNode;
 	private Lexeme curlRight;
@@ -20,7 +20,7 @@ public class BlockNode implements INode {
 			throw new ParserException("wrong start symbol");
 		}
 		
-		sNode = new StatementNode(t);
+		sNode = new StatementNode(t, variableValues);
 		
 		if(t.current().token() == Token.RIGHT_CURLY) {
 			curlRight = t.current();
@@ -37,8 +37,8 @@ public class BlockNode implements INode {
 	
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		Object[] arr = new Object[3];
-		arr[0]  = (new HashMap<Object, Double>());
+		Object[] arr = new Object[1];
+		arr[0]  = (variableValues);
 		
 		return sNode.evaluate(arr);
 	}
