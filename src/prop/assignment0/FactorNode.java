@@ -36,13 +36,9 @@ public class FactorNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		if (intValue!= null) {
-			return calcIntValue(args);
-
-		}else {
-			System.out.println("(exp)");
-			return eNode.evaluate(args);
-		}
+		
+			return intValue.value();
+		
 				
 	
 //		}else if (ID != null){

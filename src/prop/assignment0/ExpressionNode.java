@@ -20,44 +20,47 @@ public class ExpressionNode implements INode {
 			
 		}
 	}
+	
+	
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-		double left,right,result;
-		if (operand != null) {
-			left = (double) tNode.evaluate(args); //hämta värdet vänster om operand
-			right = (double) eNode.getTerm().evaluate(args);
-			if(operand.token() == Token.ADD_OP) {
-				result = left + right;
+		ExpressionNode temp = eNode;
+		double left; 
+		Lexeme tempOP = temp.getOP(); 
+		
+		left = (double) tNode.evaluate(args);
+		if(operand!=null) {
+			if(operand.token()==Token.ADD_OP) {
+				left = left + (double)temp.getTerm().evaluate(args);
 			}else {
-				result = left-right;
+				left = left - (double)temp.getTerm().evaluate(args);
 			}
 			
+			while(true) {
+				if(tempOP==null) {
+					
+					return left;
+				}
+				
+				temp = temp.eNode;
+				
+				
+				if(tempOP.token() == Token.ADD_OP) {
+					left = left + (double)temp.getTerm().evaluate(args);
+				}else {
+					left = left - (double)temp.getTerm().evaluate(args);
+				}
+				
+				tempOP = temp.getOP();
+				
+			}
 		
-	}
-		
+		}else {
+			return left;
+		}
 
-		
-
-		
-		
-		
-//			args[1] = currentResult;
-//		if (operand == null) {
-//			currentResult = tNode.evaluate(args);
-//			return currentResult;
-//		}else {
-//			//args[2] = operand;
-//			currentResult = tNode.evaluate(args);
-//			args[2] = operand;
-//			args[1] = currentResult;
-//			currentResult = eNode.evaluate(args);
-//			
-//			return currentResult;	
-//		}
-		
-		
-		
+			
 	}	
 		
 		
