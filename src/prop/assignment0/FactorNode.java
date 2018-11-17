@@ -46,7 +46,7 @@ public class FactorNode implements INode {
 			}else if(temp.get(ID.value()) instanceof Double){
 				return ((HashMap<Object, Object>) args[0]).get(ID.value());
 			}else {
-				throw new ParserException("variable "+ ID.value() +" is not initialized");
+				throw new EvaluateException("variable "+ ID.value() +" is not initialized");
 			}
 
 		}else {

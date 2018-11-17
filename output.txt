@@ -77,27 +77,12 @@ LEFT_CURLY {
 						ExpressionNode
 							TermNode
 								FactorNode
-									IDENT e
+									IDENT a
 					SEMICOLON ;
 				StatementsNode
-					AssignmentNode
-						IDENT e
-						ASSIGN_OP =
-						ExpressionNode
-							TermNode
-								FactorNode
-									INT_LIT 4.0
-							ADD_OP +
-							ExpressionNode
-								TermNode
-									FactorNode
-										INT_LIT 5.0
-						SEMICOLON ;
-					StatementsNode
 RIGHT_CURLY }
 
 EVALUATION:
 a = 1.8
 b = -0.2
-c = 8.8
-e = 9.0
+c = 1.6
