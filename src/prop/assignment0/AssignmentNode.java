@@ -75,18 +75,7 @@ public class AssignmentNode implements INode  {
 		builder.append(tab+"\t" + semicolon + "\n");
 		
 	}
-	public boolean equals(Object o) {
-		if (o instanceof AssignmentNode) {
-			AssignmentNode node = (AssignmentNode)o;
-			if (ID == node.ID) {
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			return false;
-		}
-	}
+
 
 
 	

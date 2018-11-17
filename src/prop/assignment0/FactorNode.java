@@ -43,8 +43,10 @@ public class FactorNode implements INode {
 			if (temp.get(ID.value()) instanceof ExpressionNode) {
 				ExpressionNode e = (ExpressionNode) temp.get(ID.value());
 				return (double)e.evaluate(args);
-			}else {
+			}else if(temp.get(ID.value()) instanceof Double){
 				return ((HashMap<Object, Object>) args[0]).get(ID.value());
+			}else {
+				throw new ParserException("variable "+ ID.value() +" is not initialized");
 			}
 
 		}else {
@@ -79,7 +81,5 @@ public class FactorNode implements INode {
 
 		
 	}
-	public ExpressionNode getParenExp() {
-		return eNode;
-	}
+
 }
