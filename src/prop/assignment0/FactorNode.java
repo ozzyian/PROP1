@@ -87,5 +87,7 @@ public class FactorNode implements INode {
 
 		
 	}
-
+	public ExpressionNode getParenExp() {
+		return eNode;
+	}
 }

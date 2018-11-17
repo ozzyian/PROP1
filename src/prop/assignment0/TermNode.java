@@ -19,12 +19,11 @@ public class TermNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
+		return fNode.evaluate(args);
 		
-		if(operand == null) {
-			return fNode.evaluate(args);
-		}else {
+		
+	}
 			
-		}
 		
 		
 		
@@ -47,7 +46,7 @@ public class TermNode implements INode {
 //			return leftOfOperand/rightOfOperand;
 //		}
 //		
-	}
+	
 
 	@Override
 	public void buildString(StringBuilder builder, int tabs) {
@@ -68,6 +67,9 @@ public class TermNode implements INode {
 	}
 	public Lexeme getOP() {
 		return operand;
+	}
+	public FactorNode getFNode() {
+		return fNode;
 	}
 
 }

@@ -23,19 +23,38 @@ public class ExpressionNode implements INode {
 
 	@Override
 	public Object evaluate(Object[] args) throws Exception {
-			args[1] = currentResult;
-		if (operand == null) {
-			currentResult = tNode.evaluate(args);
-			return currentResult;
-		}else {
-			//args[2] = operand;
-			currentResult = tNode.evaluate(args);
-			args[2] = operand;
-			args[1] = currentResult;
-			currentResult = eNode.evaluate(args);
+		double left,right,result;
+		if (operand != null) {
+			left = (double) tNode.evaluate(args); //hämta värdet vänster om operand
+			right = (double) eNode.getTerm().evaluate(args);
+			if(operand.token() == Token.ADD_OP) {
+				result = left + right;
+			}else {
+				result = left-right;
+			}
 			
-			return currentResult;	
-		}
+		
+	}
+		
+
+		
+
+		
+		
+		
+//			args[1] = currentResult;
+//		if (operand == null) {
+//			currentResult = tNode.evaluate(args);
+//			return currentResult;
+//		}else {
+//			//args[2] = operand;
+//			currentResult = tNode.evaluate(args);
+//			args[2] = operand;
+//			args[1] = currentResult;
+//			currentResult = eNode.evaluate(args);
+//			
+//			return currentResult;	
+//		}
 		
 		
 		
@@ -79,6 +98,9 @@ public class ExpressionNode implements INode {
 	}
 	public Lexeme getOP() {
 		return operand;
+	}
+	public TermNode getTerm() {
+		return tNode;
 	}
 
 }
